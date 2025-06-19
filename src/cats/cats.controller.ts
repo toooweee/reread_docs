@@ -47,8 +47,8 @@ export class CatsController {
   // динамические параметры (id)
   // объявляем их после всех статических путей, иначе не ворк
   @Get(':id')
-  findOne(@Param('id', ParseIntPipe) id: number): void {
-    console.log(id);
+  findOne(@Param('id', ParseIntPipe) id: number) {
+    return this.catsService.findOne(id);
   }
 
   // Установка заголовков ответа
