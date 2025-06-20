@@ -33,4 +33,17 @@ export class AuthService {
       access_token: await this.jwtService.signAsync(payload),
     };
   }
+
+  async validateUser(authDto: AuthDto) {
+    const user = await this.usersService.findOne(authDto.username);
+
+    if (user && user.password === authDto.password) {
+      return {
+        ...user,
+        password: undefined,
+      };
+    }
+
+    return null;
+  }
 }
